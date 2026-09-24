@@ -3,1531 +3,464 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>高浚程 - 个人介绍</title>
+<meta name="description" content="高浚程 - 大连理工大学 金融学+人工智能双学位。量化金融、机器学习、多模态识别。">
+<title>高浚程 - 主页</title>
 <style>
-/* ============================================
-   CSS CUSTOM PROPERTIES
-   ============================================ */
+/* ============================================================
+   设计系统 · Google Scholar 风格
+   纯白底、深灰正文、经典蓝链接、无阴影无圆角、克制留白
+   ============================================================ */
 :root {
-  --bg: #f5f5f7;
-  --surface: rgba(255,255,255,0.68);
-  --surface-strong: rgba(255,255,255,0.88);
-  --surface-card: rgba(255,255,255,0.52);
-  --text-primary: #1d1d1f;
-  --text-secondary: #6e6e73;
-  --text-tertiary: #aeaeb2;
-  --accent: #0071e3;
-  --accent-soft: rgba(0,113,227,0.08);
-  --accent-glow: rgba(0,113,227,0.15);
-  --accent-deep: #0060c0;
-  --border: rgba(0,0,0,0.07);
-  --border-strong: rgba(0,0,0,0.12);
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
-  --shadow-md: 0 4px 20px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
-  --shadow-lg: 0 20px 60px rgba(0,0,0,0.10), 0 8px 20px rgba(0,0,0,0.06);
-  --radius-sm: 12px;
-  --radius-md: 20px;
-  --radius-lg: 28px;
-  --radius-xl: 36px;
-  --radius-full: 9999px;
-  --glass-blur: blur(28px) saturate(180%);
-  --glass-blur-light: blur(16px) saturate(160%);
-  --glass-border: 1px solid rgba(255,255,255,0.56);
-  --glass-highlight: inset 0 1px 0 rgba(255,255,255,0.72);
-  --glass-shadow: 0 8px 40px rgba(0,0,0,0.08), 0 2px 12px rgba(0,0,0,0.04);
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  --font-mono: "SF Mono", "Cascadia Code", "Fira Code", "JetBrains Mono", monospace;
+  --link: #1a0dab;
+  --link-visited: #681da8;
+  --text: #212121;
+  --gray: #666666;
+  --light: #979797;
+  --border: #e0e0e0;
+  --accent: #4285f4;
+  --maxw: 1100px;
+  --font: Arial, Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 }
 
-/* ============================================
-   RESET & BASE
-   ============================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html {
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  font-family: var(--font-body);
-  background: var(--bg);
-  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: 14px;
   line-height: 1.6;
-  overflow-x: hidden;
-  position: relative;
+  color: var(--text);
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ============================================
-   AMBIENT BACKGROUND ORBS
-   ============================================ */
-.ambient-orbs {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-.ambient-orbs .orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(140px);
-  opacity: 0.32;
-  animation: orb-float 22s ease-in-out infinite;
-}
-.ambient-orbs .orb:nth-child(1) {
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(0,113,227,0.14), transparent 70%);
-  top: -10%; left: -8%;
-  animation-delay: 0s;
-}
-.ambient-orbs .orb:nth-child(2) {
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(100,140,220,0.10), transparent 70%);
-  bottom: -12%; right: -5%;
-  animation-delay: -10s;
-}
-.ambient-orbs .orb:nth-child(3) {
-  width: 420px; height: 420px;
-  background: radial-gradient(circle, rgba(140,180,240,0.08), transparent 70%);
-  top: 45%; left: 55%;
-  animation-delay: -16s;
-}
-@keyframes orb-float {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(50px, -40px) scale(1.06); }
-  50% { transform: translate(-25px, 30px) scale(0.93); }
-  75% { transform: translate(-45px, -20px) scale(1.04); }
-}
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:visited { color: var(--link-visited); }
 
-/* ============================================
-   PAGE CONTAINER
-   ============================================ */
-.page {
-  position: relative;
-  z-index: 1;
-  max-width: 1200px;
+/* ---------- 顶部导航栏 ---------- */
+.topbar {
+  border-bottom: 1px solid var(--border);
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.topbar-inner {
+  max-width: var(--maxw);
   margin: 0 auto;
-  padding: 0 32px;
-}
-
-/* ============================================
-   HERO SECTION
-   ============================================ */
-.hero {
-  min-height: 100dvh;
+  padding: 0 24px;
+  height: 56px;
   display: flex;
   align-items: center;
-  padding: 80px 0 60px;
-}
-
-.hero-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
-  width: 100%;
-}
-
-.hero-text {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--accent-soft);
-  border: 1px solid rgba(0,113,227,0.15);
-  border-radius: 100px;
-  padding: 7px 18px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: 0.05em;
-  width: fit-content;
-}
-
-.hero-eyebrow .live-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-  animation: pulse-dot 2s ease-in-out infinite;
-}
-
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.75); }
-}
-
-.hero-name {
-  font-family: var(--font-display);
-  font-size: clamp(48px, 6vw, 80px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-  color: var(--text-primary);
-}
-
-.hero-name .accent {
-  color: var(--accent);
-}
-
-.hero-tagline {
-  font-size: clamp(16px, 1.5vw, 19px);
-  color: var(--text-secondary);
-  line-height: 1.6;
-  max-width: 460px;
-}
-
-.hero-meta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  margin-top: 4px;
-}
-
-.hero-meta-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  color: var(--text-secondary);
-  letter-spacing: 0.01em;
-}
-
-.hero-meta-item .meta-icon {
-  width: 32px; height: 32px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  background: var(--accent-soft);
-}
-
-.hero-visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.glass-avatar-wrap {
-  position: relative;
-  width: 280px;
-  height: 280px;
-}
-
-.glass-avatar {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: var(--surface);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid rgba(255,255,255,0.5);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.7),
-    inset 0 -1px 0 rgba(255,255,255,0.15),
-    0 24px 64px rgba(0,0,0,0.10),
-    0 4px 16px rgba(0,0,0,0.04);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-size: 96px;
-  font-weight: 300;
-  color: var(--accent);
-  letter-spacing: -0.04em;
-  position: relative;
-  overflow: hidden;
-}
-
-.glass-avatar::before {
-  content: "";
-  position: absolute;
-  inset: 20%;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 35% 30%,
-    rgba(255,255,255,0.5) 0%,
-    rgba(255,255,255,0.1) 40%,
-    transparent 60%
-  );
-  pointer-events: none;
-}
-
-.glass-avatar::after {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  border-radius: inherit;
-  border: 1px solid rgba(255,255,255,0.18);
-  pointer-events: none;
-}
-
-.avatar-ring {
-  position: absolute;
-  inset: -12px;
-  border-radius: 50%;
-  border: 2px solid rgba(0,113,227,0.12);
-  animation: ring-pulse 3s ease-in-out infinite;
-}
-
-@keyframes ring-pulse {
-  0%, 100% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.04); opacity: 1; }
-}
-
-/* ============================================
-   SECTION COMMON
-   ============================================ */
-.section {
-  padding: 80px 0;
-}
-
-.section-label {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-.section-heading {
-  font-family: var(--font-display);
-  font-size: clamp(32px, 4vw, 48px);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.15;
-  color: var(--text-primary);
-  margin-bottom: 16px;
-}
-
-.section-subhead {
-  font-size: 16px;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  max-width: 560px;
-  margin-bottom: 40px;
-}
-
-/* ============================================
-   GLASS PANELS & CARDS
-   ============================================ */
-.glass-panel {
-  background: var(--surface);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: var(--glass-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--glass-highlight), var(--glass-shadow);
-  position: relative;
-  overflow: hidden;
-}
-
-.glass-panel::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  border: 1px solid rgba(255,255,255,0.18);
-  pointer-events: none;
-}
-
-.glass-card {
-  background: var(--surface-card);
-  backdrop-filter: var(--glass-blur-light);
-  -webkit-backdrop-filter: var(--glass-blur-light);
-  border: 1px solid rgba(255,255,255,0.48);
-  border-radius: var(--radius-md);
-  padding: 28px;
-  transition: all 0.4s var(--ease-out);
-  position: relative;
-}
-
-.glass-card:hover {
-  background: rgba(255,255,255,0.72);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 36px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
-  border-color: rgba(0,113,227,0.18);
-}
-
-.glass-card .card-icon {
-  width: 46px; height: 46px;
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  margin-bottom: 14px;
-  background: var(--accent-soft);
-  color: var(--accent);
-}
-
-.glass-card h3 {
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  margin-bottom: 6px;
-  color: var(--text-primary);
-}
-
-.glass-card p {
-  font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
-
-/* ============================================
-   GRID LAYOUTS
-   ============================================ */
-.grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-
-.grid-3 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 24px;
-}
-
-.grid-4 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 24px;
-}
-
-/* ============================================
-   TECH TAGS
-   ============================================ */
-.tech-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 12px;
-}
-
-.tech-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(255,255,255,0.56);
-  backdrop-filter: blur(10px) saturate(150%);
-  -webkit-backdrop-filter: blur(10px) saturate(150%);
-  border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 100px;
-  padding: 7px 15px;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text-primary);
-  letter-spacing: 0.01em;
-  transition: all 0.3s var(--ease-out);
-}
-
-.tech-tag:hover {
-  background: rgba(255,255,255,0.80);
-  border-color: rgba(0,113,227,0.20);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
-}
-
-/* ============================================
-   PROJECT CARD (large)
-   ============================================ */
-.project-card {
-  background: var(--surface);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: var(--glass-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--glass-highlight), var(--glass-shadow);
-  overflow: hidden;
-  transition: all 0.45s var(--ease-out);
-  display: flex;
-  flex-direction: column;
-}
-
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.7),
-    0 28px 64px rgba(0,0,0,0.12),
-    0 6px 20px rgba(0,0,0,0.06);
-}
-
-.project-card .project-body {
-  padding: 28px 32px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.project-card .project-header {
-  display: flex;
-  align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 12px;
 }
-
-.project-card .project-name {
-  font-family: var(--font-display);
+.brand {
   font-size: 20px;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  color: var(--text-primary);
-}
-
-.project-card .project-date {
-  font-size: 12px;
-  color: var(--text-tertiary);
+  color: var(--link);
   white-space: nowrap;
-  margin-top: 4px;
 }
-
-.project-card .project-desc {
-  font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  flex: 1;
-  margin-bottom: 16px;
-}
-
-.project-card .project-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+.brand:hover { text-decoration: none; opacity: .85; }
+.brand span { color: var(--gray); font-size: 18px; }
+.topnav { display: flex; gap: 22px; flex-wrap: wrap; }
+.topnav a {
+  color: var(--gray);
   font-size: 13px;
-  font-weight: 500;
-  color: var(--accent);
-  text-decoration: none;
-  letter-spacing: 0.01em;
-  transition: gap 0.3s var(--ease-out);
-  width: fit-content;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
 }
+.topnav a:hover { color: var(--link); text-decoration: none; border-bottom-color: var(--accent); }
 
-.project-card .project-link:hover {
-  gap: 10px;
-}
-
-.project-card .project-link svg {
-  width: 16px; height: 16px;
-}
-
-/* ============================================
-   揭榜挂帅 FEATURED SECTION
-   ============================================ */
-.featured-section {
-  position: relative;
-  padding: 80px 0;
-}
-
-.featured-glass {
-  background: var(--surface);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: var(--glass-border);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--glass-highlight), 0 32px 80px rgba(0,0,0,0.10);
-  padding: 56px 64px;
-  position: relative;
-  overflow: hidden;
-}
-
-.featured-glass::before {
-  content: "";
-  position: absolute;
-  top: 0; right: 0;
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(0,113,227,0.06), transparent 70%);
-  border-radius: 50%;
-  transform: translate(30%, -30%);
-  pointer-events: none;
-}
-
-.featured-glass::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  border: 1px solid rgba(255,255,255,0.18);
-  pointer-events: none;
-}
-
-.featured-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--accent-soft);
-  border: 1px solid rgba(0,113,227,0.18);
-  border-radius: 100px;
-  padding: 8px 20px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: 0.04em;
-  margin-bottom: 20px;
-}
-
-.featured-heading {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 3.5vw, 44px);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.15;
-  color: var(--text-primary);
-  margin-bottom: 16px;
-  max-width: 780px;
-}
-
-.featured-desc {
-  font-size: 16px;
-  color: var(--text-secondary);
-  line-height: 1.7;
-  max-width: 700px;
-  margin-bottom: 36px;
-}
-
-.featured-meta-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  border-top: 1px solid rgba(0,0,0,0.06);
-  padding-top: 28px;
-}
-
-.featured-meta-item {
-  text-align: left;
-  padding: 0 24px;
-  border-right: 1px solid rgba(0,0,0,0.06);
-}
-
-.featured-meta-item:first-child { padding-left: 0; }
-.featured-meta-item:last-child { border-right: none; padding-right: 0; }
-
-.featured-meta-value {
-  font-family: var(--font-display);
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--accent);
-  line-height: 1;
-  margin-bottom: 6px;
-}
-
-.featured-meta-label {
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.4;
-}
-
-/* ============================================
-   TIMELINE / PROCESS
-   ============================================ */
-.process-steps {
-  display: flex;
-  gap: 0;
-  position: relative;
-  padding: 16px 0;
-}
-
-.process-steps::before {
-  content: "";
-  position: absolute;
-  top: 28px;
-  left: 28px;
-  right: 28px;
-  height: 2px;
-  background: rgba(0,0,0,0.06);
-  border-radius: 1px;
-}
-
-.process-step {
-  flex: 1;
-  text-align: center;
-  position: relative;
-  padding: 0 8px;
-}
-
-.process-dot {
-  width: 14px; height: 14px;
-  border-radius: 50%;
-  background: white;
-  border: 2px solid var(--accent);
-  margin: 0 auto 14px;
-  position: relative;
-  z-index: 1;
-  box-shadow: 0 0 0 5px rgba(0,113,227,0.08);
-}
-
-.process-step.active .process-dot {
-  background: var(--accent);
-  box-shadow: 0 0 0 8px rgba(0,113,227,0.14);
-}
-
-.process-step-title {
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  margin-bottom: 4px;
-  color: var(--text-primary);
-}
-
-.process-step-desc {
-  font-size: 12px;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  max-width: 140px;
+/* ---------- 主体布局 ---------- */
+.layout {
+  max-width: var(--maxw);
   margin: 0 auto;
-}
-
-/* ============================================
-   STAT BARS
-   ============================================ */
-.stat-row {
+  padding: 32px 24px 64px;
   display: flex;
-  flex-wrap: wrap;
   gap: 48px;
-  justify-content: center;
-  padding: 20px 0;
+  align-items: flex-start;
 }
 
-.stat-item {
-  text-align: center;
+/* ---------- 左侧资料卡 ---------- */
+.profile { width: 250px; flex-shrink: 0; }
+.avatar {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 16px;
 }
-
-.stat-value {
-  font-family: var(--font-display);
-  font-size: clamp(36px, 4.5vw, 64px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--accent);
-  line-height: 1;
+.profile h1 {
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 8px;
 }
-
-.stat-label {
-  font-size: 13px;
-  color: var(--text-secondary);
-  margin-top: 6px;
-  letter-spacing: 0.03em;
-}
-
-/* ============================================
-   SKILLS GRID
-   ============================================ */
-.skill-group {
+.profile .affiliation {
+  font-size: 14px;
+  color: var(--gray);
   margin-bottom: 20px;
 }
-
-.skill-group-title {
+.profile h2 {
   font-size: 13px;
-  font-weight: 600;
-  color: var(--text-tertiary);
+  font-weight: 700;
+  color: var(--gray);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 10px;
+  letter-spacing: .04em;
+  margin: 20px 0 6px;
 }
-
-.skill-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+.interests a { display: inline; }
+.profile .contact a { display: block; font-size: 13px; margin-bottom: 2px; }
+.stats {
+  margin-top: 20px;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
 }
+.stats-row { display: flex; justify-content: space-between; font-size: 13px; color: var(--gray); padding: 2px 0; }
+.stats-row b { color: var(--text); font-weight: 600; }
 
-.skill-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--surface-card);
-  backdrop-filter: var(--glass-blur-light);
-  -webkit-backdrop-filter: var(--glass-blur-light);
-  border: 1px solid rgba(255,255,255,0.40);
-  border-radius: 100px;
-  padding: 9px 18px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-primary);
-  letter-spacing: 0.01em;
-  transition: all 0.3s var(--ease-out);
-}
-
-.skill-pill:hover {
-  background: rgba(255,255,255,0.78);
-  border-color: rgba(0,113,227,0.18);
-  transform: translateY(-1px);
-}
-
-.skill-pill .pill-dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--accent);
-  opacity: 0.6;
-}
-
-/* ============================================
-   CONTACT
-   ============================================ */
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
-}
-
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: var(--surface-card);
-  backdrop-filter: var(--glass-blur-light);
-  -webkit-backdrop-filter: var(--glass-blur-light);
-  border: 1px solid rgba(255,255,255,0.44);
-  border-radius: var(--radius-md);
-  padding: 20px 24px;
-  text-decoration: none;
-  color: var(--text-primary);
-  transition: all 0.35s var(--ease-out);
-}
-
-.contact-item:hover {
-  background: rgba(255,255,255,0.78);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-color: rgba(0,113,227,0.16);
-}
-
-.contact-icon-wrap {
-  width: 44px; height: 44px;
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--accent-soft);
+/* ---------- 右侧内容区 ---------- */
+.content { flex: 1; min-width: 0; }
+.section { margin-bottom: 40px; }
+.section-title {
   font-size: 20px;
-  flex-shrink: 0;
+  font-weight: 400;
+  color: var(--text);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+.bio { font-size: 14px; color: var(--text); max-width: 640px; }
+.bio + .bio { margin-top: 10px; }
+
+/* ---------- Scholar 式项目条目 ---------- */
+.year {
+  font-size: 16px;
+  color: var(--gray);
+  font-weight: 400;
+  margin: 24px 0 4px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.pub { padding: 14px 0 16px; border-bottom: 1px solid #f5f5f5; }
+.pub-title { font-size: 17px; font-weight: 400; line-height: 1.4; }
+.pub-title a:visited { color: var(--link); }
+.pub-authors { font-size: 13px; color: var(--gray); margin-top: 2px; }
+.pub-venue { font-size: 13px; color: var(--text); margin-top: 2px; }
+.pub-snippet { font-size: 13px; color: var(--gray); margin-top: 6px; max-width: 660px; }
+.pub-links { font-size: 13px; color: var(--light); margin-top: 6px; }
+.pub-links a { margin-right: 12px; }
+.tag {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--gray);
+  border: 1px solid var(--border);
+  padding: 0 6px;
+  margin-right: 6px;
+  vertical-align: 1px;
 }
 
-.contact-info .contact-label {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text-tertiary);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 2px;
+/* ---------- 教育 / 课程 / 技能 / 竞赛 ---------- */
+.edu-item { padding: 10px 0; }
+.edu-line { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.edu-school { font-size: 16px; color: var(--link); }
+.edu-degree { font-size: 14px; color: var(--text); margin-top: 2px; }
+.edu-meta { font-size: 13px; color: var(--gray); }
+.edu-detail { font-size: 13px; color: var(--gray); margin-top: 4px; }
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 4px 24px;
 }
-
-.contact-info .contact-value {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-/* ============================================
-   SCROLL REVEAL ANIMATIONS
-   ============================================ */
-.reveal {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.reveal-delay-1 { transition-delay: 0.05s; }
-.reveal-delay-2 { transition-delay: 0.10s; }
-.reveal-delay-3 { transition-delay: 0.15s; }
-.reveal-delay-4 { transition-delay: 0.20s; }
-.reveal-delay-5 { transition-delay: 0.25s; }
-
-/* ============================================
-   DIVIDER
-   ============================================ */
-.section-divider {
-  width: 60px;
-  height: 3px;
-  background: var(--accent);
-  border-radius: 2px;
-  opacity: 0.3;
-  margin: 0 0 40px 0;
-}
-
-/* ============================================
-   FOOTER
-   ============================================ */
-.page-footer {
-  text-align: center;
-  padding: 48px 0;
+.course {
+  display: flex;
+  justify-content: space-between;
   font-size: 13px;
-  color: var(--text-tertiary);
-  letter-spacing: 0.02em;
+  padding: 5px 0;
+  border-bottom: 1px dotted #eee;
 }
+.course .score { color: var(--gray); font-variant-numeric: tabular-nums; }
+.course .score b { color: var(--text); }
 
-/* ============================================
-   RESPONSIVE
-   ============================================ */
-@media (max-width: 1024px) {
-  .page { padding: 0 24px; }
-
-  .hero-inner {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    text-align: center;
-  }
-
-  .hero-text { align-items: center; }
-  .hero-tagline { max-width: 100%; }
-  .hero-meta-row { justify-content: center; }
-
-  .glass-avatar-wrap {
-    width: 200px; height: 200px;
-  }
-  .glass-avatar { font-size: 64px; }
-
-  .grid-2, .grid-3, .grid-4 {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .featured-glass { padding: 40px 36px; }
-  .featured-meta-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  .featured-meta-item {
-    border-right: none;
-    padding: 0;
-  }
-
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .process-steps {
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .process-steps::before { display: none; }
-  .process-step { flex: 1 1 40%; }
+.skill-group { margin-bottom: 14px; }
+.skill-group h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3px;
 }
+.skill-group p { font-size: 13px; color: var(--gray); max-width: 680px; }
 
-@media (max-width: 640px) {
-  .page { padding: 0 16px; }
-  .hero { padding: 48px 0 40px; }
-  .section { padding: 48px 0; }
-  .featured-section { padding: 48px 0; }
-
-  .hero-name { font-size: 38px; }
-  .section-heading { font-size: 28px; }
-  .featured-heading { font-size: 24px; }
-
-  .grid-2, .grid-3, .grid-4 {
-    grid-template-columns: 1fr;
-  }
-
-  .featured-glass { padding: 28px 24px; }
-  .featured-meta-grid { grid-template-columns: 1fr; }
-
-  .glass-card { padding: 20px; }
-  .project-card .project-body { padding: 20px 22px; }
-
-  .stat-row { gap: 24px; }
-  .stat-value { font-size: 32px; }
+.award-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f5f5f5;
+  font-size: 14px;
 }
+.award-item .a-title { color: var(--text); }
+.award-item .a-title span { color: var(--gray); }
+.award-item .a-date { color: var(--gray); white-space: nowrap; font-size: 13px; }
 
-/* ============================================
-   REDUCED MOTION
-   ============================================ */
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-  .ambient-orbs .orb { animation: none; }
-  .hero-eyebrow .live-dot { animation: none; }
-  .avatar-ring { animation: none; }
-  .glass-card:hover, .project-card:hover, .contact-item:hover {
-    transform: none;
-  }
+.contact-list a { display: block; padding: 4px 0; font-size: 14px; }
+
+/* ---------- 页脚 ---------- */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 20px 24px 32px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--light);
 }
+.footer a { color: var(--gray); }
 
-/* ============================================
-   REDUCED TRANSPARENCY
-   ============================================ */
-@media (prefers-reduced-transparency: reduce) {
-  .glass-panel, .glass-card, .glass-avatar, .project-card,
-  .featured-glass, .contact-item, .skill-pill {
-    background: rgba(255,255,255,0.94);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
+/* ---------- 响应式 ---------- */
+@media (max-width: 820px) {
+  .layout { flex-direction: column; gap: 24px; padding-top: 24px; }
+  .profile { width: 100%; display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; }
+  .profile .affiliation { margin-bottom: 8px; }
+  .topnav { gap: 14px; }
 }
 </style>
 </head>
 <body>
 
-<!-- Ambient Background Orbs -->
-<div class="ambient-orbs">
-  <div class="orb"></div>
-  <div class="orb"></div>
-  <div class="orb"></div>
-</div>
+<!-- 顶部导航 -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top">高浚程 <span>- 主页</span></a>
+    <nav class="topnav">
+      <a href="#projects">项目</a>
+      <a href="#education">教育背景</a>
+      <a href="#courses">核心课程</a>
+      <a href="#skills">专业技能</a>
+      <a href="#awards">竞赛经历</a>
+      <a href="#contact">联系</a>
+    </nav>
+  </div>
+</header>
 
-<!-- =============================================
-     MAIN CONTENT
-     ============================================= -->
-<div class="page">
+<div class="layout" id="top">
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-text reveal">
-        <div class="hero-eyebrow">
-          <span class="live-dot"></span>
-          大连理工大学 · 金融学 + 人工智能 双学位
-        </div>
-        <h1 class="hero-name">
-          高浚程<br>
-          <span class="accent">Gao Juncheng</span>
-        </h1>
-        <p class="hero-tagline">
-          金融学与人工智能双学位在读，热爱用代码解决真实世界问题。
-          擅长计算机视觉、数据分析与全栈项目搭建，正在多模态AI方向持续深入。
-        </p>
-        <div class="hero-meta-row">
-          <div class="hero-meta-item">
-            <div class="meta-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </div>
-            18104232638
-          </div>
-          <div class="hero-meta-item">
-            <div class="meta-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
-            gjc_999@qq.com
-          </div>
-          <div class="hero-meta-item">
-            <div class="meta-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-            </div>
-            github.com/dissdannm
-          </div>
-        </div>
+  <!-- 左侧资料卡 -->
+  <aside class="profile">
+    <img class="avatar" src="avatar.png" alt="高浚程">
+    <div>
+      <h1>高浚程</h1>
+      <div class="affiliation">
+        大连理工大学<br>
+        金融学 + 人工智能 双学位（本科）<br>
+        2025 – 2029
       </div>
-      <div class="hero-visual reveal reveal-delay-2">
-        <div class="glass-avatar-wrap">
-          <div class="avatar-ring"></div>
-          <div class="glass-avatar">GJ</div>
-        </div>
+
+      <h2>研究兴趣</h2>
+      <div class="interests">
+        <a href="#projects">量化金融与多因子模型</a>、<a href="#projects">大语言模型与知识图谱</a>、<a href="#projects">机器学习与可解释性</a>、<a href="#projects">多模态行为识别</a>
+      </div>
+
+      <h2>学术指标</h2>
+      <div class="stats">
+        <div class="stats-row"><span>加权成绩</span><b>87.51 / 100</b></div>
+        <div class="stats-row"><span>项目</span><b>8</b></div>
+        <div class="stats-row"><span>竞赛</span><b>4</b></div>
+        <div class="stats-row"><span>代码仓库</span><a href="https://github.com/dissdannm">github.com/dissdannm</a></div>
+      </div>
+
+      <h2>联系方式</h2>
+      <div class="contact">
+        <a href="mailto:gjc_999@qq.com">✉ gjc_999@qq.com</a>
+        <a href="https://github.com/dissdannm">⌥ GitHub 主页</a>
       </div>
     </div>
-  </section>
+  </aside>
 
-  <!-- ============================================
-       ABOUT / EDUCATION
-       ============================================ -->
-  <section class="section">
-    <div class="section-label reveal">教育背景</div>
-    <h2 class="section-heading reveal reveal-delay-1">金融学 + 人工智能 双学位在读</h2>
-    <p class="section-subhead reveal reveal-delay-1">
-      大连理工大学 · 经济管理学院（金融学）+ 人工智能双学位 · 本科一年级<br>
-      加权平均分 87.51 · 专业排名 28/228 (前12%)
-    </p>
-    <div class="section-divider reveal reveal-delay-2"></div>
+  <!-- 右侧内容 -->
+  <main class="content">
 
-    <div class="grid-2">
-      <div class="glass-card reveal reveal-delay-2">
-        <div class="card-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-        </div>
-        <h3>核心课程成绩</h3>
-        <p style="line-height: 1.9;">
-          微积分 90/100 &middot; 线性代数 84 &middot; 大学物理 92<br>
-          概率论与数理统计 91 &middot; 经济学原理 92 &middot; 数据科学 94
-        </p>
-      </div>
-      <div class="glass-card reveal reveal-delay-3">
-        <div class="card-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-        </div>
-        <h3>语言与自我评价</h3>
-        <p>
-          英语 CET-4 608 分<br>
-          学习能力突出，对新技术保持好奇心与自驱力。<br>
-          擅长从零搭建项目，能独立完成从模型训练到前端展示的全链路原型开发。
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       PROJECTS
-       ============================================ -->
-  <section class="section">
-    <div class="section-label reveal">项目经历</div>
-    <h2 class="section-heading reveal reveal-delay-1">开源项目与技术实践</h2>
-    <p class="section-subhead reveal reveal-delay-1">
-      所有项目代码均开源在 GitHub，欢迎查看源码与演示。
-    </p>
-    <div class="section-divider reveal reveal-delay-2"></div>
-
-    <div class="grid-2" style="margin-bottom: 24px;">
-      <!-- Project 1 -->
-      <div class="project-card reveal reveal-delay-2">
-        <div class="project-body">
-          <div class="project-header">
-            <h3 class="project-name">运动力线分析系统</h3>
-            <span class="project-date">2025.10 - 2026.01</span>
-          </div>
-          <p class="project-desc">
-            企业级本地可运行的运动力线分析系统。本地摄像头采集视频帧，MediaPipe 提取人体关键点，实时计算二维关节角度与力线偏移量。模块化架构（acquisition → perception → analysis → output → storage），支持动作配置文件（JSON）驱动、逐帧 CSV 导出、会话摘要 JSON 落盘、本地 TTS 语音播报告警。V1 版本集成小型 LLM 作合规说明缓存；V2 版本全面转向微调模型，支持自定义运动场景与自动运动类型识别。
-          </p>
-          <div class="tech-tags">
-            <span class="tech-tag">MediaPipe Pose</span>
-            <span class="tech-tag">运动生物力学</span>
-            <span class="tech-tag">OpenCV</span>
-            <span class="tech-tag">TTS 语音告警</span>
-            <span class="tech-tag">模块化架构</span>
-          </div>
-          <a href="https://github.com/dissdannm/Sports_Analysis_Force_line" target="_blank" class="project-link" style="margin-top: 14px;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-            Sports_Analysis_Force_line
-          </a>
-        </div>
-      </div>
-
-      <!-- Project 2 -->
-      <div class="project-card reveal reveal-delay-3">
-        <div class="project-body">
-          <div class="project-header">
-            <h3 class="project-name">动作捕捉键盘映射工具</h3>
-            <span class="project-date">2025 - 2026</span>
-          </div>
-          <p class="project-desc">
-            v1.02 · 将身体姿态实时转化为 PC 键盘输入。预置 6 组手势映射（深蹲→K键、举手→J键、抬脚→W键、深蹲转体→R键、双手上举→回车、跳跃→E键），支持 5 维度全自定义键盘映射编辑器。3 种摄像头模式（USB 直连 / WiFi IP Webcam / 本地视频文件），10 轴角度计算 + 时序分析 + 噪声滤波 + 规则引擎。PyInstaller 打包为独立 .exe 无需 Python 环境。
-          </p>
-          <div class="tech-tags">
-            <span class="tech-tag">MediaPipe 33关键点</span>
-            <span class="tech-tag">pynput 键盘注入</span>
-            <span class="tech-tag">OpenCV</span>
-            <span class="tech-tag">PyInstaller</span>
-            <span class="tech-tag">自定义映射编辑器</span>
-          </div>
-          <a href="https://github.com/dissdannm/MotionKeyboardMapper-v1.02" target="_blank" class="project-link" style="margin-top: 14px;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-            MotionKeyboardMapper
-          </a>
-        </div>
-      </div>
-
-      <!-- Project 3 -->
-      <div class="project-card reveal reveal-delay-4">
-        <div class="project-body">
-          <div class="project-header">
-            <h3 class="project-name">ESP32 水产生态智能监测</h3>
-            <span class="project-date">2024 - 2025</span>
-          </div>
-          <p class="project-desc">
-            学院实验室项目组负责人。ESP32 单片机集成 TDS、pH、温度等多传感器阵列，实现鱼菜共生系统水质全参数自动监测与灌溉控制。支持远程 Web 端实时查看数据，自动灌溉阈值触发，研究节水型自动换水方案。已完成核心功能开发，正在推进太阳能供电与工业化防水封装。指导教师：张雪老师。
-          </p>
-          <div class="tech-tags">
-            <span class="tech-tag">ESP32</span>
-            <span class="tech-tag">Arduino</span>
-            <span class="tech-tag">传感器融合</span>
-            <span class="tech-tag">Web远程监控</span>
-            <span class="tech-tag">自动灌溉</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 4 -->
-      <div class="project-card reveal reveal-delay-5">
-        <div class="project-body">
-          <div class="project-header">
-            <h3 class="project-name">DataScience 新手入门教程</h3>
-            <span class="project-date">2024</span>
-          </div>
-          <p class="project-desc">
-            独立编写的开源数据科学入门笔记，面向零基础学习者。涵盖 NumPy 数值计算、Pandas 数据操作、金融策略实战案例等模块。内容由浅入深，附完整可运行代码示例，所有示例均经过实际测试。已开源在 GitHub 供社区自由使用。
-          </p>
-          <div class="tech-tags">
-            <span class="tech-tag">NumPy</span>
-            <span class="tech-tag">Pandas</span>
-            <span class="tech-tag">金融数据分析</span>
-            <span class="tech-tag">Jupyter</span>
-          </div>
-          <a href="https://github.com/dissdannm/DataScience-Greenhand-s-Book" target="_blank" class="project-link" style="margin-top: 14px;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-            DataScience-Greenhand-s-Book
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- ============================================
-       揭榜挂帅 FEATURED SECTION
-       ============================================ -->
-  <section class="featured-section">
-    <div class="featured-glass reveal">
-      <div class="featured-badge">
-        <span class="live-dot" style="width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse-dot 2s ease-in-out infinite;"></span>
-        揭榜挂帅 · 进行中
-      </div>
-
-      <h2 class="featured-heading">
-        基于多模态AI监测的老年人跌倒风险识别及预警研究
-      </h2>
-      <p class="featured-desc">
-        2026年度中国青年科技创新"揭榜挂帅"擂台赛（学生赛道）。命题由<strong>杭州海康威视数字技术股份有限公司</strong>发榜（XH-202617），依托萤石云开放平台与AIoT技术体系。我担任<strong>计算机视觉模块负责人</strong>，负责多模态AI算法中的视觉骨骼追踪、跌倒检测模型设计与训练，同时参与整体技术方案的制定。
+    <!-- 个人简介 -->
+    <section class="section">
+      <h2 class="section-title">个人简介</h2>
+      <p class="bio">
+        大连理工大学金融学与人工智能双学位本科生。研究兴趣覆盖量化金融与因子投资、基于知识图谱与大语言模型的股票收益预测、机器学习建模与可解释性分析，以及多模态人体行为识别。
       </p>
+      <p class="bio">
+        熟练使用 Python（Pandas / NumPy / Scikit-learn / Matplotlib）进行数据清洗、特征工程与统计建模；自学多因子模型框架，了解 RankIC、Fama-MacBeth 回归等因子检验方法；熟悉 XGBoost 等树模型的完整建模–评估–调参流程。多次在全国性竞赛中担任队长或编程手，具备从顶层方案设计到代码落地的全栈能力。
+      </p>
+    </section>
 
-      <div class="featured-meta-grid">
-        <div class="featured-meta-item">
-          <div class="featured-meta-value">76,000+</div>
-          <div class="featured-meta-label">系统综述被试总量</div>
-        </div>
-        <div class="featured-meta-item">
-          <div class="featured-meta-value">50+</div>
-          <div class="featured-meta-label">跌倒风险评估指标</div>
-        </div>
-        <div class="featured-meta-item">
-          <div class="featured-meta-value">14</div>
-          <div class="featured-meta-label">核心论文循证支撑</div>
-        </div>
-        <div class="featured-meta-item">
-          <div class="featured-meta-value">10人</div>
-          <div class="featured-meta-label">跨学科团队规模</div>
-        </div>
-      </div>
-    </div>
-  </section>
+    <!-- 项目（Scholar 文章式列表） -->
+    <section class="section" id="projects">
+      <h2 class="section-title">项目</h2>
 
-  <!-- ============================================
-       揭榜挂帅 技术细节
-       ============================================ -->
-  <section class="section">
-    <div class="section-label reveal">技术方案</div>
-    <h2 class="section-heading reveal reveal-delay-1">端 - 边 - 云协同架构</h2>
-    <p class="section-subhead reveal reveal-delay-1">
-      从数据采集到预警响应，构建四位一体的智能监护闭环。
-    </p>
-    <div class="section-divider reveal reveal-delay-2"></div>
+      <h3 class="year">2026</h3>
 
-    <div class="grid-4 reveal reveal-delay-2" style="margin-bottom: 40px;">
-      <div class="glass-card" style="text-align: center;">
-        <div class="card-icon" style="margin: 0 auto 12px;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      <article class="pub">
+        <div class="pub-title"><a href="https://github.com/dissdannm">「来财」普惠融资协同平台 —— 工行杯金融科技创新大赛</a></div>
+        <div class="pub-authors">高浚程（队长，独立完成方案设计与建模）</div>
+        <div class="pub-venue">2026 年 9 月 – 至今</div>
+        <div class="pub-snippet">
+          面向个体工商户，设计基于多渠道经营数据的预授信辅助方案，构建「来源可验证、处理可追溯」的可信经营数据链与多源对账机制；设计基线模型（逻辑回归）与挑战模型（梯度提升树）对比框架，以 AUC、KS、PR-AUC、校准度、PSI 等指标评估增量预测价值；提出净经营现金流测算模型与建议额度公式，采用 SHAP 特征归因输出原因码，并规划接口 PoC → 商户试点 → 历史回测与影子评分 → 受控放款的分阶段验证路线。
         </div>
-        <h3 style="font-size: 16px;">感知层</h3>
-        <p style="font-size: 13px;">萤石云深度相机 + IMU可穿戴传感器<br>多模态数据实时采集与端侧特征提取</p>
-      </div>
-      <div class="glass-card" style="text-align: center;">
-        <div class="card-icon" style="margin: 0 auto 12px;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        </div>
-        <h3 style="font-size: 16px;">认知层</h3>
-        <p style="font-size: 13px;">多模态大模型 + LoRA微调<br>跨模态特征融合与风险分级推理</p>
-      </div>
-      <div class="glass-card" style="text-align: center;">
-        <div class="card-icon" style="margin: 0 auto 12px;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        </div>
-        <h3 style="font-size: 16px;">决策层</h3>
-        <p style="font-size: 13px;">三级预警判定机制<br>误报过滤与处置方案自动生成</p>
-      </div>
-      <div class="glass-card" style="text-align: center;">
-        <div class="card-icon" style="margin: 0 auto 12px;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-        </div>
-        <h3 style="font-size: 16px;">执行层</h3>
-        <p style="font-size: 13px;">家属App推送 + 社区联动<br>120急救中心对接响应闭环</p>
-      </div>
-    </div>
+        <div class="pub-links"><span class="tag">角色：队长</span><a href="https://github.com/dissdannm">[GitHub]</a></div>
+      </article>
 
-    <!-- 技术三大核心 -->
-    <div class="grid-3 reveal reveal-delay-3">
-      <div class="glass-card">
-        <h3>多模态时空融合跌倒检测</h3>
-        <p style="margin-top: 8px;">
-          融合视觉骨骼关节点与 IMU 加速度时序信号，结合步速/步频/步长等时空参数、关节矢状面角度、动态稳定度 (MoS)，实现跌倒前风险预警与跌倒时精准识别。
-        </p>
-        <div class="tech-tags">
-          <span class="tech-tag">时空参数</span>
-          <span class="tech-tag">MoS 动态稳定度</span>
-          <span class="tech-tag">运动学关节角</span>
+      <article class="pub">
+        <div class="pub-title"><a href="https://github.com/dissdannm">药材烘干过程的热质耦合传递模型 —— 全国大学生数学建模竞赛（高教社杯）A 题</a></div>
+        <div class="pub-authors">高浚程（编程手）</div>
+        <div class="pub-venue">2026 年 9 月</div>
+        <div class="pub-snippet">
+          构建圆柱形中药材热风干燥过程的轴对称热质耦合传递模型，刻画温度场与含水率场演化；采用节点型有限体积法离散空间、Crank-Nicolson 格式推进时间、Picard 迭代处理变物性，并实现移动边界（收缩效应）下的材料坐标变换求解。
         </div>
-      </div>
-      <div class="glass-card">
-        <h3>深度相机三维步态建模</h3>
-        <p style="margin-top: 8px;">
-          基于深度相机的无标记骨骼关节点追踪，提取双侧髋/膝/踝关节矢状面角度、步幅变异性、支撑相/摆动相不对称指数等精细运动学特征。
-        </p>
-        <div class="tech-tags">
-          <span class="tech-tag">骨骼追踪</span>
-          <span class="tech-tag">关节运动学</span>
-          <span class="tech-tag">步态不对称指数</span>
-        </div>
-      </div>
-      <div class="glass-card">
-        <h3>肌电与姿态耦合分析</h3>
-        <p style="margin-top: 8px;">
-          采集胫骨前肌/腓肠肌等下肢关键肌群表面肌电信号，结合 IMU 姿态角数据，分析神经肌肉控制策略与动态平衡代偿机制，实现跌倒倾向早期预测。
-        </p>
-        <div class="tech-tags">
-          <span class="tech-tag">sEMG 肌电</span>
-          <span class="tech-tag">IMU 姿态角</span>
-          <span class="tech-tag">神经肌肉控制</span>
-        </div>
-      </div>
-    </div>
-  </section>
+        <div class="pub-links"><span class="tag">角色：编程手</span><a href="https://github.com/dissdannm">[GitHub]</a></div>
+      </article>
 
-  <!-- ============================================
-       PROJECT PLAN
-       ============================================ -->
-  <section class="section">
-    <div class="section-label reveal">项目初步计划</div>
-    <h2 class="section-heading reveal reveal-delay-1">三条技术线并行推进</h2>
-    <p class="section-subhead reveal reveal-delay-1">
-      模型训练、数据采集与前端展示同步开发，确保项目高效交付。
-    </p>
-    <div class="section-divider reveal reveal-delay-2"></div>
+      <article class="pub">
+        <div class="pub-title"><a href="https://github.com/dissdannm">动捕系统平价替代方案（与锐博合作项目）</a></div>
+        <div class="pub-authors">高浚程</div>
+        <div class="pub-venue">2026 年 9 月 – 至今</div>
+        <div class="pub-snippet">
+          针对维康等公司动捕系统垄断局面，开发低成本平价替代方案；已完成顶层设计：数据采集 → 二维数据点提取 → 滤波平滑 → 三维映射算法 → 动态可视化。
+        </div>
+        <div class="pub-links"><span class="tag">合作企业：锐博</span><a href="https://github.com/dissdannm">[GitHub]</a></div>
+      </article>
 
-    <div class="grid-3 reveal reveal-delay-2">
-      <div class="glass-card">
-        <div class="card-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      <article class="pub">
+        <div class="pub-title"><a href="https://github.com/dissdannm">基于多模态数据的老年人跌倒风险识别 —— 挑战杯「揭榜挂帅」专项赛（海康威视榜题）</a></div>
+        <div class="pub-authors">高浚程（队长，10 人团队，含硕士 1 名）· 指导教师：栾其斌 副教授</div>
+        <div class="pub-venue">2026 年 7 月 – 2026 年 9 月</div>
+        <div class="pub-snippet">
+          负责整体技术方案顶层设计与机器学习模型开发，项目含数据采集层、XGBoost 模型层、LLM（LoRA 微调）层与网页终端四层架构；利用物理 AI（Nvidia Cosmos）生成模拟跌倒视频数据，拆解为 26 个生物力学因子作为模型输入；采用 XGBoost + 规则指标混合权重判定方案，跌倒检测准确率达 90%。
         </div>
-        <h3>模型端</h3>
-        <p>
-          基于萤石云平台，使用 LoRA 微调预训练模型，结合合成数据与采集数据进行训练。构建双通道预测架构，解决平台单通道置信度不足的问题。
-        </p>
-        <div class="tech-tags">
-          <span class="tech-tag">萤石云平台</span>
-          <span class="tech-tag">LoRA微调</span>
-          <span class="tech-tag">双通道预测</span>
-        </div>
-      </div>
-      <div class="glass-card">
-        <div class="card-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-        </div>
-        <h3>视觉与数据采集</h3>
-        <p>
-          使用传感器实时采集视觉信号与 IMU 运动数据，构建多模态信息本地记录系统。数据以 JSON 结构化存储，包含运动学指标与视频流时间戳对齐。
-        </p>
-        <div class="tech-tags">
-          <span class="tech-tag">实时采集</span>
-          <span class="tech-tag">多模态融合</span>
-          <span class="tech-tag">JSON结构化</span>
-        </div>
-      </div>
-      <div class="glass-card">
-        <div class="card-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        </div>
-        <h3>前端展示</h3>
-        <p>
-          搭建网页 / App 展示平台，支持视频流与数据实时传输。对接萤石云平台模型接口与自有模型，实现双通道预警与数据可视化 Dashboard。
-        </p>
-        <div class="tech-tags">
-          <span class="tech-tag">Web App</span>
-          <span class="tech-tag">实时视频流</span>
-          <span class="tech-tag">数据可视化</span>
-        </div>
-      </div>
-    </div>
-  </section>
+        <div class="pub-links"><span class="tag">角色：队长</span><span class="tag">成果：检测准确率 90%</span><a href="https://github.com/dissdannm">[GitHub]</a></div>
+      </article>
 
-  <!-- ============================================
-       COMPETITIONS
-       ============================================ -->
-  <section class="section">
-    <div class="section-label reveal">竞赛经历</div>
-    <h2 class="section-heading reveal reveal-delay-1">竞赛与实践</h2>
-    <p class="section-subhead reveal reveal-delay-1">
-      在团队中承担数据分析、论文撰写与算法开发角色。
-    </p>
-    <div class="section-divider reveal reveal-delay-2"></div>
+      <article class="pub">
+        <div class="pub-title"><a href="https://github.com/dissdannm">体感游戏键盘映射服务</a></div>
+        <div class="pub-authors">高浚程</div>
+        <div class="pub-venue">2026 年 3 月 – 2026 年 5 月</div>
+        <div class="pub-snippet">开源小工具：将体感输入映射为键盘事件，打通体感游戏与常规 PC 游戏的交互链路。</div>
+        <div class="pub-links"><a href="https://github.com/dissdannm">[GitHub]</a></div>
+      </article>
 
-    <div class="grid-2 reveal reveal-delay-2">
-      <div class="glass-card">
-        <div class="card-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+      <article class="pub">
+        <div class="pub-title"><a href="https://github.com/dissdannm">数据科学入门笔记</a></div>
+        <div class="pub-authors">高浚程</div>
+        <div class="pub-venue">2026 年 3 月 – 2026 年 5 月</div>
+        <div class="pub-snippet">面向初学者的数据科学学习笔记开源整理，覆盖统计建模、特征工程与机器学习基础。</div>
+        <div class="pub-links"><a href="https://github.com/dissdannm">[GitHub]</a></div>
+      </article>
+
+      <article class="pub">
+        <div class="pub-title"><a href="https://github.com/dissdannm">月球栖息地物资运输效率模型 —— 美国大学生数学建模竞赛（MCM/ICM）B 题</a></div>
+        <div class="pub-authors">高浚程（编程手，3 人团队）</div>
+        <div class="pub-venue">2026 年 2 月 · MCM/ICM · S 奖（Successful Participant）</div>
+        <div class="pub-snippet">
+          构建地月双渠道运输网络优化模型（太空电梯 + 常规火箭），求解成本–时间–环境多目标优化问题；使用贝叶斯推断进行小样本失效概率学习，结合随机森林回归进行参数估计与迁移；采用投影梯度下降（PGD）+ 连续松弛求解多目标优化并输出 Pareto 最优解集，独立完成全部代码实现与数值求解。
         </div>
-        <h3>MCM/ICM 数学建模竞赛</h3>
-        <p style="margin-top: 8px;">
-          2026年2月 | <strong>S奖 (Successful Participant)</strong><br>
-          负责数据分析与建模，独立撰写全英文论文。担任团队数据分析师角色，在规定时间内完成从建模到论文的全流程。
-        </p>
-      </div>
-      <div class="glass-card">
-        <div class="card-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <div class="pub-links"><span class="tag">角色：编程手</span><span class="tag">S 奖</span><a href="https://github.com/dissdannm">[GitHub]</a></div>
+      </article>
+
+      <h3 class="year">2025</h3>
+
+      <article class="pub">
+        <div class="pub-title"><a href="https://github.com/dissdannm">基于 MediaPipe 的人体运动力学解析程序</a></div>
+        <div class="pub-authors">高浚程 · 与运动康复专业学生合作</div>
+        <div class="pub-venue">2025 年 12 月 – 2026 年 2 月</div>
+        <div class="pub-snippet">
+          基于 MediaPipe 姿态估计的四层架构设计，完成面向运动康复场景的力学指标封装与解析，为动作评估提供量化依据。
         </div>
-        <h3>揭榜挂帅 · 计算机视觉负责人</h3>
-        <p style="margin-top: 8px;">
-          2026年5月至今 | <strong>视觉模块负责人 & 算法开发者</strong><br>
-          负责多模态AI算法的视觉方案设计，包括 MediaPipe 骨骼关节点提取、时空融合跌倒检测模型、步态运动学分析。跨10人团队协作，与模型端、前端对接接口协议。
-        </p>
+        <div class="pub-links"><a href="https://github.com/dissdannm">[GitHub]</a></div>
+      </article>
+
+    </section>
+
+    <!-- 教育背景 -->
+    <section class="section" id="education">
+      <h2 class="section-title">教育背景</h2>
+      <div class="edu-item">
+        <div class="edu-line">
+          <span class="edu-school"><a href="https://www.dlut.edu.cn">大连理工大学</a></span>
+          <span class="edu-meta">2025 年 9 月 – 2029 年 6 月</span>
+        </div>
+        <div class="edu-degree">金融学 + 人工智能 双学位（本科）</div>
+        <div class="edu-detail">加权成绩：87.51 / 100</div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============================================
-       SKILLS
-       ============================================ -->
-  <section class="section">
-    <div class="section-label reveal">技术能力</div>
-    <h2 class="section-heading reveal reveal-delay-1">专业工具与技术栈</h2>
-    <p class="section-subhead reveal reveal-delay-1">
-      以下为我在项目实践中常用的工具与技术体系。
-    </p>
-    <div class="section-divider reveal reveal-delay-2"></div>
+    <!-- 核心课程 -->
+    <section class="section" id="courses">
+      <h2 class="section-title">核心课程</h2>
+      <div class="course-grid">
+        <div class="course"><span>数据科学基础</span><span class="score"><b>94</b></span></div>
+        <div class="course"><span>概率论与数理统计</span><span class="score"><b>91</b></span></div>
+        <div class="course"><span>大学物理</span><span class="score"><b>92</b></span></div>
+        <div class="course"><span>微积分 1</span><span class="score"><b>90</b></span></div>
+        <div class="course"><span>微积分 2</span><span class="score"><b>85</b></span></div>
+        <div class="course"><span>线性代数</span><span class="score"><b>84</b></span></div>
+        <div class="course"><span>经济学原理</span><span class="score"><b>84</b></span></div>
+        <div class="course"><span>管理学原理</span><span class="score"><b>92</b></span></div>
+      </div>
+    </section>
 
-    <div class="reveal reveal-delay-2">
+    <!-- 专业技能 -->
+    <section class="section" id="skills">
+      <h2 class="section-title">专业技能</h2>
       <div class="skill-group">
-        <div class="skill-group-title">计算机视觉 & AI</div>
-        <div class="skill-pills">
-          <span class="skill-pill"><span class="pill-dot"></span>MediaPipe Pose</span>
-          <span class="skill-pill"><span class="pill-dot"></span>OpenCV</span>
-          <span class="skill-pill"><span class="pill-dot"></span>scikit-learn</span>
-          <span class="skill-pill"><span class="pill-dot"></span>LLM 微调 (LoRA)</span>
-          <span class="skill-pill"><span class="pill-dot"></span>NumPy / Pandas</span>
-        </div>
+        <h3>编程与数据处理</h3>
+        <p>熟练使用 Python（Pandas / NumPy / Scikit-learn / Matplotlib）进行数据清洗、特征工程与统计建模；了解 C/C++；熟悉 Git 版本控制。</p>
       </div>
-
       <div class="skill-group">
-        <div class="skill-group-title">编程语言</div>
-        <div class="skill-pills">
-          <span class="skill-pill"><span class="pill-dot"></span>Python (主力)</span>
-          <span class="skill-pill"><span class="pill-dot"></span>C/C++</span>
-          <span class="skill-pill"><span class="pill-dot"></span>SQL</span>
-        </div>
+        <h3>量化与金融建模</h3>
+        <p>自学多因子模型框架，研究基于知识图谱与大语言模型的股票收益预测方法；了解 RankIC、Fama-MacBeth 回归等因子检验方法。</p>
       </div>
-
       <div class="skill-group">
-        <div class="skill-group-title">桌面开发 & 打包</div>
-        <div class="skill-pills">
-          <span class="skill-pill"><span class="pill-dot"></span>Tkinter</span>
-          <span class="skill-pill"><span class="pill-dot"></span>PyInstaller</span>
-          <span class="skill-pill"><span class="pill-dot"></span>Flet</span>
-        </div>
+        <h3>机器学习</h3>
+        <p>熟悉 XGBoost 等树模型，具备完整的建模–评估–调参项目经验；了解 SHAP 特征归因、异常检测与贝叶斯推断。</p>
       </div>
+    </section>
 
-      <div class="skill-group">
-        <div class="skill-group-title">硬件与嵌入式</div>
-        <div class="skill-pills">
-          <span class="skill-pill"><span class="pill-dot"></span>ESP32</span>
-          <span class="skill-pill"><span class="pill-dot"></span>Arduino</span>
-          <span class="skill-pill"><span class="pill-dot"></span>传感器集成</span>
-        </div>
+    <!-- 竞赛经历 -->
+    <section class="section" id="awards">
+      <h2 class="section-title">竞赛经历</h2>
+      <div class="award-item">
+        <span class="a-title">美国大学生数学建模竞赛（MCM/ICM）B 题 · 编程手 · <span>S 奖</span></span>
+        <span class="a-date">2026.02</span>
       </div>
-
-      <div class="skill-group">
-        <div class="skill-group-title">开发工具</div>
-        <div class="skill-pills">
-          <span class="skill-pill"><span class="pill-dot"></span>VS Code</span>
-          <span class="skill-pill"><span class="pill-dot"></span>PyCharm</span>
-          <span class="skill-pill"><span class="pill-dot"></span>Jupyter Notebook</span>
-          <span class="skill-pill"><span class="pill-dot"></span>Git / GitHub</span>
-          <span class="skill-pill"><span class="pill-dot"></span>Flet (桌面UI)</span>
-        </div>
+      <div class="award-item">
+        <span class="a-title">全国大学生数学建模竞赛（高教社杯）A 题 · 编程手</span>
+        <span class="a-date">2026.09</span>
       </div>
-    </div>
-  </section>
+      <div class="award-item">
+        <span class="a-title">挑战杯「揭榜挂帅」专项赛（海康威视榜题）· 队长</span>
+        <span class="a-date">2026.07 – 2026.09</span>
+      </div>
+      <div class="award-item">
+        <span class="a-title">工行杯金融科技创新大赛 · 队长 · 独立参赛</span>
+        <span class="a-date">2026.09 – 至今</span>
+      </div>
+    </section>
 
-  <!-- ============================================
-       CONTACT
-       ============================================ -->
-  <section class="section">
-    <div class="section-label reveal">联系方式</div>
-    <h2 class="section-heading reveal reveal-delay-1">期待与您交流</h2>
-    <p class="section-subhead reveal reveal-delay-1">
-      欢迎通过以下方式联系我，了解更多项目细节或探讨合作机会。
-    </p>
-    <div class="section-divider reveal reveal-delay-2"></div>
+    <!-- 联系 -->
+    <section class="section" id="contact">
+      <h2 class="section-title">联系</h2>
+      <div class="contact-list">
+        <a href="mailto:gjc_999@qq.com">邮箱：gjc_999@qq.com</a>
+        <a href="https://github.com/dissdannm">GitHub：github.com/dissdannm</a>
+        <a href="tel:18104232638">电话：18104232638</a>
+      </div>
+    </section>
 
-    <div class="contact-grid reveal reveal-delay-2">
-      <a href="tel:18104232638" class="contact-item">
-        <div class="contact-icon-wrap">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </div>
-        <div class="contact-info">
-          <div class="contact-label">电话</div>
-          <div class="contact-value">18104232638</div>
-        </div>
-      </a>
-      <a href="mailto:gjc_999@qq.com" class="contact-item">
-        <div class="contact-icon-wrap">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </div>
-        <div class="contact-info">
-          <div class="contact-label">邮箱</div>
-          <div class="contact-value">gjc_999@qq.com</div>
-        </div>
-      </a>
-      <a href="https://github.com/dissdannm" target="_blank" class="contact-item">
-        <div class="contact-icon-wrap">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-        </div>
-        <div class="contact-info">
-          <div class="contact-label">GitHub</div>
-          <div class="contact-value">github.com/dissdannm</div>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="page-footer reveal">
-    高浚程 &middot; 大连理工大学 金融学 + 人工智能双学位 &middot; gjc_999@qq.com
-  </footer>
-
+  </main>
 </div>
 
-<!-- ============================================
-     SCROLL REVEAL OBSERVER
-     ============================================ -->
-<script>
-(function() {
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px 0px -60px 0px',
-    threshold: 0.1
-  };
-
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('.reveal').forEach(function(el) {
-    observer.observe(el);
-  });
-})();
-</script>
+<footer class="footer">
+  © 2026 高浚程 · 由 <a href="https://pages.github.com">GitHub Pages</a> 托管 · 风格参考 Google Scholar
+</footer>
 
 </body>
 </html>
